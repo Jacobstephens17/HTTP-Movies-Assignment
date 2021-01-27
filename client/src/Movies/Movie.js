@@ -14,13 +14,21 @@ function Movie({ addToSavedList }) {
       .catch((err) => console.log(err.response));
   };
 
-  const saveMovie = () => {
-    addToSavedList(movie);
+  const saveMovie = (id) => {
+    console.log('button works')
+  //  axios
+  //   .put(`http://localhost:5000/api/movies/1`)
+  //   .then((res)=>{
+  //   console.log('button works')
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
   };
 
   const handleEditMovie = () => {
-    window.location.href = `/update-movie/${1}`
-
+    fetchMovie(params.id)
+    window.location.href = `/update-movie/${params.id}`
   }
 
   useEffect(() => {

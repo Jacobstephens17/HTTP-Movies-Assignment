@@ -1,32 +1,89 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useParams, useHistory } from "react-router-dom";
+
+
+const initialValue = {
+    id: '',
+    title: '',
+    director: ' ',
+    metascore: '',
+    stars: [],
+  }
+
+
 
 const UpdateMovie = () => {
 
+    const [item, setItem ] = useState(initialValue);
+    const { push } = useHistory();
+    const { id } = useParams();
+ 
+    useEffect(()=>{
+        axios
+          .get(`http://localhost:5000/api/movies/${id}`)
+          .then(res=>{
+            setItem(res.data);
+            console.log(res.data)
+          })
+          .catch(err=>{
+            console.log(err);
+          });
+      }, []);
+
+
+
+    const changeHandler = (event) => {
+        setItem({
+            ...item, 
+            [event.target.name]: event.target.value
+        })
+
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        console.log('clicked')
+        axios
+            .put(`http://localhost:5000/api/movies/${id}`, item)
+            .then((res)=>{
+                push(`/movies/${id}`)
+                console.log(res)
+            })
+    }
 
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     type = 'text'
-                    placeholder ='Title'
+                    name = 'title'
+                    onChange={changeHandler}
+                    value={item.title}
                 />
 
                 <input
                     type = 'text'
-                    placeholder ='Director'
+                    name = 'director'
+                    onChange={changeHandler}
+                    value={item.director}
                 />
 
                 <input
                     type = 'text'
-                    placeholder ='MetaScore'
+                    name= 'metascore'
+                    onChange={changeHandler}
+                    value={item.metascore}
                 />
                 
                 <input
                 type = 'text'
-                placeholder ='Stars'
+                name = 'stars'
+                onChange={changeHandler}
+                value={item.stars}
                 />
-                
-                <button>Save Changes</button>
+
+                <button>Done</button>
             </form>
         </div>
     )
