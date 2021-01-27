@@ -18,6 +18,11 @@ function Movie({ addToSavedList }) {
     addToSavedList(movie);
   };
 
+  const handleEditMovie = () => {
+    window.location.href = `/update-movie/${1}`
+
+  }
+
   useEffect(() => {
     fetchMovie(params.id);
   }, [params.id]);
@@ -33,6 +38,7 @@ function Movie({ addToSavedList }) {
       <div className="save-button" onClick={saveMovie}>
         Save
       </div>
+      <button onClick={handleEditMovie}>Edit Movie</button>
     </div>
   );
 }
