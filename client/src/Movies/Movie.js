@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import { Route, NavLink, useHistory, useParams } from 'react-router-dom';
+
 
 function Movie({ addToSavedList }) {
+
+
+const { push } = useHistory();
+
   const [movie, setMovie] = useState(null);
   const params = useParams();
 
@@ -24,12 +29,26 @@ function Movie({ addToSavedList }) {
   //   .catch((err)=>{
   //     console.log(err)
   //   })
-  };
+};
 
-  const handleEditMovie = () => {
-    fetchMovie(params.id)
-    window.location.href = `/update-movie/${params.id}`
+const handleEditMovie = () => {
+  fetchMovie(params.id)
+  window.location.href = `/update-movie/${params.id}`
+}
+
+const handleDelete = () => {
+  fetchMovie(params.id)
+  axios 
+  .delete(`http://localhost:5000/api/movies/${params.id}`)
+  .then((res)=>{
+    console.log(res)
+    window.location.href = `/`
+  })
+  .catch((err) =>{
+    console.log(err)
+  })
   }
+
 
   useEffect(() => {
     fetchMovie(params.id);
@@ -47,6 +66,7 @@ function Movie({ addToSavedList }) {
         Save
       </div>
       <button onClick={handleEditMovie}>Edit Movie</button>
+      <button onClick={handleDelete}>Delete Movie</button>
     </div>
   );
 }
