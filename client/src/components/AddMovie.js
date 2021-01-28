@@ -25,6 +25,7 @@ const AddMovie = (props) => {
     axios
       .post(`http://localhost:5000/api/movies/`, movie)
       .then((res) => {
+        push("/");
       })
       .then((err) => {
         console.log(err);
