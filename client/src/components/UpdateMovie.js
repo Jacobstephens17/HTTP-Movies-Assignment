@@ -29,7 +29,7 @@ const UpdateMovie = () => {
           .catch(err=>{
             console.log(err);
           });
-      }, []);
+      }, [id]);
 
 
 
