@@ -55,33 +55,45 @@ const UpdateMovie = () => {
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <input
-                    type = 'text'
-                    name = 'title'
-                    onChange={changeHandler}
-                    value={item.title}
-                />
+                <label>
+                    Title: 
+                    <input
+                        type = 'text'
+                        name = 'title'
+                        onChange={changeHandler}
+                        value={item.title}
+                    />
+                </label>
 
-                <input
-                    type = 'text'
-                    name = 'director'
-                    onChange={changeHandler}
-                    value={item.director}
-                />
+                <label>
+                    Director:
+                    <input
+                        type = 'text'
+                        name = 'director'
+                        onChange={changeHandler}
+                        value={item.director}
+                    />
+                </label>
 
-                <input
+                <label>
+                    MetaScore:
+                    <input
+                        type = 'text'
+                        name= 'metascore'
+                        onChange={changeHandler}
+                        value={item.metascore}
+                    />
+                </label>
+
+                <label>
+                    Stars:
+                    <input
                     type = 'text'
-                    name= 'metascore'
+                    name = 'stars'
                     onChange={changeHandler}
-                    value={item.metascore}
-                />
-                
-                <input
-                type = 'text'
-                name = 'stars'
-                onChange={changeHandler}
-                value={item.stars}
-                />
+                    value={item.stars}
+                    />
+                </label>
 
                 <button>Done</button>
             </form>

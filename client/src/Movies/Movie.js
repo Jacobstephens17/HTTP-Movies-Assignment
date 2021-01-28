@@ -20,15 +20,7 @@ const { push } = useHistory();
   };
 
   const saveMovie = (id) => {
-    console.log('button works')
-  //  axios
-  //   .put(`http://localhost:5000/api/movies/1`)
-  //   .then((res)=>{
-  //   console.log('button works')
-  //   })
-  //   .catch((err)=>{
-  //     console.log(err)
-  //   })
+ push('/')
 };
 
 const handleEditMovie = () => {
@@ -62,9 +54,7 @@ const handleDelete = () => {
     <div className="save-wrapper">
       <MovieCard movie={movie} />
 
-      <div className="save-button" onClick={saveMovie}>
-        Save
-      </div>
+      <button className="save-button" onClick={saveMovie}>Save</button>
       <button onClick={handleEditMovie}>Edit Movie</button>
       <button onClick={handleDelete}>Delete Movie</button>
     </div>
